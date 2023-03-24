@@ -1,9 +1,10 @@
 ﻿using RazorPlusServices.Models;
+using static RazorPlusServices.Pages.SuppliersModel;
 
 namespace RazorPlusServices.Services
 {
     public interface ISupplierService
     {
-        List<Supplier> GetSuppliers(string sortColumn, string sortOrder);
+        List<SupplierViewModel> GetSuppliers(string sortColumn, string sortOrder);
     }
 }

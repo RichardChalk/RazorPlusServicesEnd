@@ -11,7 +11,7 @@ namespace RazorPlusServices.Services
         {
             _dbContext = dbContext;
         }
-        public List<Supplier> GetSuppliers(string sortColumn, string sortOrder)
+        public List<SupplierViewModel> GetSuppliers(string sortColumn, string sortOrder)
         {
             var query = _dbContext.Suppliers.AsQueryable();
 
@@ -33,7 +33,15 @@ namespace RazorPlusServices.Services
                 else if (sortOrder == "desc")
                     query = query.OrderByDescending(s => s.City);
 
-            return query.ToList();
+            var suppliers = query.Select(s => new SupplierViewModel
+            {
+                Id = s.SupplierId,
+                Name = s.CompanyName,
+                City = s.City,
+                Country = s.Country
+            }).ToList();
+
+            return suppliers;
         }
     }
 }

@@ -26,14 +26,7 @@ namespace RazorPlusServices.Pages
 
         public void OnGet(string sortColumn, string sortOrder)
         {
-            Suppliers = _supplierService.GetSuppliers(sortColumn, sortOrder)
-                .Select(s => new SupplierViewModel
-                {
-                    Id = s.SupplierId,
-                    Name = s.CompanyName,
-                    City = s.City,
-                    Country = s.Country
-                }).ToList();
+            Suppliers = _supplierService.GetSuppliers(sortColumn, sortOrder);
         }
     }
 }
